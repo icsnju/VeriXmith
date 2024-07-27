@@ -1,0 +1,1849 @@
+{
+    "bi-partial-comparison": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "comparison between two partial"
+            ]
+        },
+        "__ignore": true
+    },
+    "verilog-parser-error": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "core.circuits.verilog.VerilogParserError"
+            ]
+        },
+        "missing-details-for-module-port": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Missing details for module port",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-begin": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "syntax error, unexpected TOK_BEGIN, expecting TOK_ID or '#'"
+                ]
+            }
+        },
+        "unsupported-expr-on-dynamic-range-select": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Unsupported expression on dynamic range select"
+                ]
+            }
+        },
+        "sig-is_signed-assertion-failed": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Assert `arg->is_signed == sig.as_wire()->is_signed' failed",
+                    "yosys"
+                ]
+            }
+        },
+        "const-arg-only-func": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "can only be called with constant arguments."
+                ]
+            }
+        },
+        "expr-width-exceeds-limit": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Expression width",
+                    "exceeds implementation limit"
+                ]
+            }
+        },
+        "get-SIGKILL": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Exit code: -9",
+                    "read_verilog -noassert -mem2reg ",
+                    "yosys"
+                ]
+            }
+        },
+        "multiple-top-level-modules": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "multiple top-level modules found"
+                ]
+            },
+            "__ignore": true
+        },
+        "submodule-not-found": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "read_verilog",
+                    "is not part of the design"
+                ]
+            },
+            "__ignore": true
+        },
+        "cannot-resolve-task": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Can't resolve task name"
+                ]
+            }
+        },
+        "cannot-resolve-function": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Can't resolve function name"
+                ]
+            }
+        },
+        "wildcard-port-connect-not-supported": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Wildcard port connections are only supported in SystemVerilog mode."
+                ]
+            }
+        },
+        "static-task-unsupported": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Static cast is only supported in SystemVerilog mode.",
+                    "yosys"
+                ]
+            }
+        },
+        "incompatible-widths-of-elements": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ValueError: incompatible widths of elements in "
+                ]
+            },
+            "in-genblk": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        ".genblk"
+                    ]
+                }
+            }
+        },
+        "incompatible-types-of-elements": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ValueError: incompatible types of elements"
+                ]
+            }
+        },
+        "duplicate-indices-of-elements": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ValueError: duplicate index"
+                ]
+            }
+        },
+        "memories": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "memories",
+                    "NotImplementedError"
+                ]
+            },
+            "__ignore": true
+        },
+        "repeat-in-function": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "can only be called with constant arguments",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "invalid-array-access": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Invalid array access",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "non-constant-init-value": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Failed to get a constant init value",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "non-constant-1st-expr-in-for-loop": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Right hand side of 1st expression of procedural for-loop is not constant!",
+                    "yosys"
+                ]
+            }
+        },
+        "non-constant-2nd-expr-in-for-loop": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: 2nd expression of generate for-loop is not constant!",
+                    "yosys"
+                ]
+            }
+        },
+        "non-constant-system-task-argument": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Failed to evaluate system task",
+                    " with non-constant argument",
+                    "yosys"
+                ]
+            }
+        },
+        "non-constant-repeat-times": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Repeat loops outside must have constant repeat counts!",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "non-const-function-call-in-const-expr": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Non-constant function call in constant expression",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "non-const-expr-in-const-func": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Non-constant expression in constant function",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "non-const-param": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Parameter",
+                    "with non-constant value!",
+                    "yosys"
+                ]
+            }
+        },
+        "non-const-generate-condition": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Condition for generate if is not constant!"
+                ]
+            }
+        },
+        "output-port-connected-to-const": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Output port",
+                    "is connected to constants",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "id-map-to-unexpanded-mem": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Identifier",
+                    "does map to an unexpanded memory",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "multiple-edge-sensitive-events": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Multiple edge sensitive events found for this signal!",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-left-square-bracket": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "syntax error, unexpected '['",
+                    "yosys"
+                ]
+            },
+            "__ignore": true
+        },
+        "unexpected-equal-sign": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '=', expecting '(' or '['",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-at": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '@'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-sharp": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '#', expecting ';'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-semicolon": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected ';', expecting '(' or '['",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-semicolon-2": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected ';', expecting TOK_ID or '#'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-semicolon-3": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "syntax error, unexpected ';', expecting '('",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-assign": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_ASSIGN",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-slash": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '/', expecting TOK_ID or ',' or ')'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-TOK_SIGNED": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_SIGNED, expecting '(' or ';'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-token": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_ID, expecting '(' or ';'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-token-2": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_ID, expecting ',' or ')'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-token-3": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_ID",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-string": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_STRING, expecting TOK_ID or '#'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-cast": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected OP_CAST",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-colon": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected ':'",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-real": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_REAL",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-comma": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected ','",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-left-paren": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '('",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-left-shift": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected OP_SHL",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-time-scale": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected TOK_TIME_SCALE",
+                    "yosys"
+                ]
+            }
+        },
+        "unexpected-dot": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: syntax error, unexpected '.'",
+                    "yosys"
+                ]
+            }
+        },
+        "expected-single-range": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Single range expected.",
+                    "yosys"
+                ]
+            }
+        },
+        "defparam-not-found": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Can't find object for defparam",
+                    "yosys"
+                ]
+            }
+        },
+        "finish-executed": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: System task `$finish' executed.",
+                    "yosys"
+                ]
+            }
+        },
+        "non-constant-async-reset": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Async reset",
+                    "yields non-constant value",
+                    "yosys"
+                ]
+            }
+        },
+        "timeout-in-parsing": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "invoke.exceptions.CommandTimedOut",
+                    "yosys"
+                ]
+            }
+        },
+        "SIGSEGV-received": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Exit code: -11"
+                ]
+            }
+        },
+        "implicitly-id-default-is-none": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "ERROR: Identifier",
+                    "is implicitly declared and `default_nettype is set to none."
+                ]
+            }
+        }
+    },
+    "counterexample-index-out-of-range": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "tuple index out of range",
+                "is_equivalent_to"
+            ]
+        }
+    },
+    "unmatched-item": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "core.ir.module.ItemNotFoundError"
+            ]
+        },
+        "__ignore": true
+    },
+    "missing-snapshots-file": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "self._next_states_from(snapshots_file)",
+                "FileNotFoundError"
+            ]
+        }
+    },
+    "only-one-snapshot-in-snapshots-file": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "ValueError",
+                "all_snapshots"
+            ]
+        },
+        "klee-unimplemented-intrinsic": {
+            "__trait": {
+                "klee/messages.txt": [
+                    "AND",
+                    "unimplemented intrinsic"
+                ]
+            }
+        },
+        "klee-unsupported-intrinsic": {
+            "__trait": {
+                "klee/warnings.txt": [
+                    "AND",
+                    "unsupported intrinsic"
+                ]
+            }
+        },
+        "verilator-abort-failure": {
+            "__trait": {
+                "klee/messages.txt": [
+                    "AND",
+                    "verilator/include/verilated.cpp:161: abort failure"
+                ]
+            }
+        },
+        "klee-memory-cap-exceeded": {
+            "__trait": {
+                "klee/warnings.txt": [
+                    "OR",
+                    "memory cap exceeded",
+                    "over memory cap"
+                ]
+            }
+        },
+        "klee-out-of-bound-pointer": {
+            "__trait": {
+                "klee/messages.txt": [
+                    "AND",
+                    "memory error: out of bound pointer"
+                ]
+            }
+        }
+    },
+    "only-one-comparee": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "ValueError",
+                "more comparees"
+            ]
+        }
+    },
+    "command-timeout": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "invoke.exceptions.CommandTimedOut"
+            ]
+        },
+        "wllvm++": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "wllvm++"
+                ]
+            }
+        },
+        "verilator": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "verilator"
+                ]
+            }
+        },
+        "yosys": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "yosys"
+                ]
+            }
+        },
+        "__ignore": true
+    },
+    "unexpected-exit": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "invoke.exceptions.UnexpectedExit",
+                [
+                    "NOT",
+                    "Called with -verify and proof did fail!"
+                ]
+            ]
+        },
+        "yosys-crash": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "yosys",
+                    [
+                        "NOT",
+                        [
+                            "OR",
+                            "klee",
+                            "wllvm"
+                        ]
+                    ]
+                ]
+            },
+            "exit-code--11-no-output": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Exit code: -11"
+                    ]
+                }
+            },
+            "multiple-edge-sensitive-events-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Multiple edge sensitive events found for this signal!"
+                    ]
+                }
+            },
+            "surelog-nettype-set-to-none": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "plugin -i systemverilog",
+                        "is implicitly declared and `default_nettype is set to none."
+                    ]
+                }
+            },
+            "surelog-failed-to-get-const-val": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "plugin -i systemverilog",
+                        "Failed to get a constant init value"
+                    ]
+                }
+            },
+            "surelog-latch-inferred-from-always_comb-proc": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "plugin -i systemverilog",
+                        "Latch inferred for signal",
+                        "from always_comb process"
+                    ]
+                }
+            },
+            "surelog-no-latch-inferred-from-always_latch-proc": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "plugin -i systemverilog",
+                        "No latch inferred for signal",
+                        "from always_latch process"
+                    ]
+                }
+            },
+            "dlatch-unsupported": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "please run `async2sync; dffunmap` or `clk2fflogic` before `write_smt2`."
+                    ]
+                }
+            },
+            "non-synthesizable-event-list": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "ERROR: Found non-synthesizable event list!"
+                    ]
+                }
+            },
+            "non-constant-enable-in-mem-initialization": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "ERROR: Non-constant enable",
+                        "in memory initialization"
+                    ]
+                }
+            },
+            "dlatch-unsupported-another-msg": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "-- please run `clk2fflogic` before `write_smt2`"
+                    ]
+                }
+            },
+            "not-marked-as-CXXRTL-blackbox": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "ERROR: External blackbox cell",
+                        "is not marked as a CXXRTL blackbox."
+                    ]
+                }
+            },
+            "is_lhs-assertion-failed": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Assert `is_lhs' failed in backends/cxxrtl/cxxrtl_backend.cc:989."
+                    ]
+                }
+            },
+            "logic-loop": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Found logic loop"
+                    ]
+                }
+            },
+            "multiple-drivers": {
+                "__trait": {
+                    "exception.log": [
+                        "OR",
+                        "has multiple drivers!",
+                        "Found multiple drivers for"
+                    ]
+                }
+            },
+            "drive-constant-bits": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "driving constant bits"
+                    ]
+                }
+            },
+            "wire-comb-defs-assertion-failed": {
+                "__trait": {
+                    "exception.log": [
+                        "OR",
+                        "Assert `flow.wire_comb_defs[wire].size() == 1' failed",
+                        "Assert `flow.wire_comb_defs[it].size() == 1' failed"
+                    ]
+                }
+            },
+            "noproc-has_sync_init": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "noproc",
+                        "!has_sync_init"
+                    ]
+                }
+            },
+            "noflatten-for_debug": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "noflatten",
+                        "!for_debug"
+                    ]
+                }
+            },
+            "assertion-failed-in-rtlil-690": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "ERROR: Assert",
+                        "failed in kernel/rtlil.cc:690."
+                    ]
+                }
+            },
+            "unsupported-cell-pow": {
+                "__trait": {
+                    "exception.log": [
+                        "OR",
+                        "ERROR: Unsupported internal cell `$pow'.",
+                        "Unsupported cell type $pow"
+                    ]
+                }
+            },
+            "failed-to-import-cell-to-sat-database": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Failed to import cell",
+                        "to SAT database."
+                    ]
+                }
+            },
+            "no-matching-port-in-gate-module": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "No matching port in gate module was found"
+                    ]
+                }
+            },
+            "meminit-with-non-const-data": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Non-constant data",
+                        "in memory initialization"
+                    ]
+                }
+            },
+            "object-not-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "ERROR: Object",
+                        "not found!"
+                    ]
+                }
+            },
+            "unhandled-process_typespec_member": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Encountered unhandled typespec in process_typespec_member",
+                        "array_typespec"
+                    ]
+                }
+            },
+            "parse-only-with-define": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "-parseonly"
+                    ],
+                    "input.sv": [
+                        "AND",
+                        "`define"
+                    ]
+                }
+            }
+        },
+        "wllvm-with-yosys": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "wllvm++",
+                    "yosys"
+                ]
+            },
+            "hidden-variables-in-debug-info": {
+                "__trait": {
+                    "exception.log": [
+                        "OR",
+                        "invalid suffix 'v'",
+                        "use of undeclared identifier",
+                        "duplicate member",
+                        "expected ';' at end of declaration list",
+                        "expected ';' after expression"
+                    ]
+                }
+            },
+            "static-assert-problem": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "static_assert(std::numeric_limits<IntegerT>::digits >= Bits,"
+                    ]
+                }
+            },
+            "initialize-error-const-char": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "cannot initialize a parameter of type 'const wchar_t *' with an lvalue of type 'const char *'"
+                    ]
+                }
+            },
+            "underline-in-module-name": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "debug.cpp",
+                        "no type named 'p_"
+                    ]
+                }
+            },
+            "missing-semicolon-after-declaration-specifiers": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "error: expected member name or ';' after declaration specifiers"
+                    ]
+                }
+            },
+            "exceeded-bracket-nesting-level": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "fatal error: bracket nesting level exceeded maximum of 256"
+                    ]
+                }
+            },
+            "fatal-too-many-errors-generated": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "fatal error: too many errors emitted"
+                    ]
+                }
+            }
+        },
+        "wllvm-with-verilator": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "wllvm++",
+                    "verilator"
+                ]
+            },
+            "incorrectly-transform-clk-into-array": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "array type",
+                        "is not assignable",
+                        "clk"
+                    ]
+                },
+                "__ignore": true
+            },
+            "no-rule-to-make-target-makefile-not-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "make: *** No rule to make target"
+                    ]
+                }
+            },
+            "exit-2-member-not-exist": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Exit code: 2",
+                        "error: no member named"
+                    ]
+                }
+            },
+            "not-overloaded-equal-operator": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "error: no viable overloaded '='",
+                        "note: candidate function (the implicit move assignment operator) not viable"
+                    ]
+                }
+            },
+            "variable-as-array-index-lhs": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "cannot convert",
+                        "VlUnpacked",
+                        "without a conversion operator"
+                    ]
+                },
+                "__ignore": true
+            },
+            "clang-unknown-argument": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "clang-13: error: unknown argument: '-fcoroutines'"
+                    ]
+                }
+            },
+            "no-member-named": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "error: no member named"
+                    ]
+                },
+                "__ignore": true
+            },
+            "missing-clk": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "no member named",
+                        "__PVT__clk",
+                        "Vtop__main.cpp"
+                    ]
+                },
+                "__ignore": true
+            },
+            "missing-reg": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "no member named",
+                        "reg",
+                        "Vtop__main.cpp"
+                    ]
+                },
+                "__ignore": true
+            }
+        },
+        "verilator-elaboration": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "verilator -cc -exe -sym-exec-main"
+                ]
+            },
+            "internal-error-under-debug": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Internal Error: Aborting since under --debug"
+                    ]
+                }
+            },
+            "num-accessed-when-data-type-uninitialized": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Internal Error",
+                        "`num` member accessed when data type is UNINITIALIZED"
+                    ]
+                }
+            },
+            "selection-index-out-of-range": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Warning-SELRANGE",
+                        "Selection index out of range"
+                    ]
+                }
+            },
+            "internal-error-bad-word-index": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "V3Const.cpp:135: Bad word index into wide"
+                    ]
+                }
+            },
+            "assign-to-input-const-variable": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "%Error-ASSIGNIN:",
+                        "Assigning to input/const variable"
+                    ]
+                }
+            },
+            "variable-definition-not-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Can't find definition of variable"
+                    ]
+                }
+            },
+            "pow-op-internal-error": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "%Error: Internal Error: ",
+                        "Mismatched width",
+                        "**"
+                    ]
+                }
+            },
+            "to-uint-with-x-internal-error": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "%Error: Internal Error: ",
+                        "toUInt with 4-state 1'bx"
+                    ]
+                }
+            },
+            "aborted-core-dumped-under-debug": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Aborted (core dumped)",
+                        "Exit code: 134"
+                    ]
+                }
+            },
+            "function-calls-in-sensitivity-lists": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Unsupported: function calls in sensitivity lists"
+                    ]
+                }
+            },
+            "need-timing-option": {
+                "__trait": {
+                    "exception.log": [
+                        "OR",
+                        "Use --timing or --no-timing to specify how timing controls should be handled",
+                        "Use --timing or --no-timing to specify how delays should be handled"
+                    ]
+                }
+            },
+            "duplicate-declaration-of-signal": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Duplicate declaration of signal"
+                    ]
+                }
+            },
+            "procedural-assign-to-wire": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "%Error-PROCASSWIRE",
+                        "Procedural assignment to wire"
+                    ]
+                }
+            },
+            "unsupported-tristate-construct": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Unsupported tristate construct"
+                    ]
+                }
+            },
+            "verilator-syntax-error": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "syntax error"
+                    ]
+                }
+            },
+            "incorrect-comment-insertion": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "syntax error, unexpected '['",
+                        "/*verilator public_flat*/"
+                    ]
+                }
+            },
+            "not-an-lhs-value": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Assignment LHS is not an lvalue",
+                        "V3Broken.cpp"
+                    ]
+                },
+                "__ignore": true
+            },
+            "blk-loop-init": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "BLKLOOPINIT"
+                    ],
+                    "strategy.json": [
+                        "OR",
+                        "--unroll-stmts",
+                        "--unroll-count"
+                    ]
+                },
+                "__ignore": true
+            },
+            "value-too-wide": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Value too wide"
+                    ]
+                },
+                "__ignore": true
+            },
+            "wide-op-without-temp": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "%Error: Internal Error:",
+                        "Wide Op w/ no temp, perhaps missing op in V3EmitC?"
+                    ]
+                }
+            }
+        },
+        "klee-killed-by-os": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "klee",
+                    "Exit code: -9"
+                ]
+            },
+            "__ignore": true
+        },
+        "llvm-dis-killed-by-SIGKILL": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "llvm-dis",
+                    "Exit code: -9"
+                ]
+            },
+            "__ignore": true
+        },
+        "klee-unimplemented-intrinsic": {
+            "__trait": {
+                "klee/messages.txt": [
+                    "AND",
+                    "unimplemented intrinsic"
+                ]
+            }
+        },
+        "klee-unsupported-intrinsic": {
+            "__trait": {
+                "klee/messages.txt": [
+                    "AND",
+                    "unsupported intrinsic"
+                ]
+            }
+        },
+        "klee-region-not-converge": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "klee --posix-runtime --libc=uclibc --libcxx",
+                    "region did not converge"
+                ]
+            }
+        },
+        "sv2v-crash": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "Command: 'sv2v"
+                ]
+            },
+            "different-unpacked-dimensions": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "declarations",
+                        "are incompatible due to different unpacked dimensions"
+                    ]
+                }
+            },
+            "cannot-determine-type-because-inner-cannot-be-indexed": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "can't determine the type of",
+                        "because the inner type logic unsigned can't be indexed, within scope"
+                    ]
+                }
+            },
+            "cannot-find-class-C": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        " could not find class \"C\""
+                    ]
+                }
+            },
+            "could-not-resolve-typename": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "couldn't resolve typename"
+                    ]
+                }
+            },
+            "key-not-in-map": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "given key is not an element in the map"
+                    ]
+                }
+            },
+            "package-item-not-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "could not find",
+                        " in package"
+                    ]
+                }
+            },
+            "package-namespace-import-error": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "error, called at src/Convert/Scoper.hs:376:22 in main:Convert.Scoper"
+                    ]
+                }
+            },
+            "parse-error": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "Parse error"
+                    ]
+                },
+                "dollar-in-array-declaration": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '$' (Sym_dollar)"
+                        ]
+                    }
+                },
+                "unexpected-token-KW_primitive": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'primitive' (KW_primitive)"
+                        ]
+                    }
+                },
+                "unexpected-token-Sym_aster": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '*' (Sym_aster)"
+                        ]
+                    }
+                },
+                "unexpected-token-Sym_eq": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token '=' (Sym_eq)"
+                        ]
+                    }
+                },
+                "missing-expected-join": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `join`"
+                        ]
+                    }
+                },
+                "unexpected-token-new": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'new' (KW_new)"
+                        ]
+                    }
+                },
+                "unexpected-token-medium": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'medium' (KW_medium)"
+                        ]
+                    }
+                },
+                "unexpected-token-disable": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'disable' (KW_disable)"
+                        ]
+                    }
+                },
+                "unexpected-token-ref": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'ref' (KW_ref)"
+                        ]
+                    }
+                },
+                "unexpected-token-bind": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'bind' (KW_bind)"
+                        ]
+                    }
+                },
+                "unexpected-token-sharp": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '#' (Sym_pound)"
+                        ]
+                    }
+                },
+                "unexpected-token-program": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'program' (KW_program)"
+                        ]
+                    }
+                },
+                "unexpected-token-tildy_amp": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '~&' (Sym_tildy_amp)"
+                        ]
+                    }
+                },
+                "unexpected-token-virtual": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'virtual' (KW_virtual)"
+                        ]
+                    }
+                },
+                "unexpected-token-until": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'until' (KW_until)"
+                        ]
+                    }
+                },
+                "missing-expected-endfunction": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endfunction`"
+                        ]
+                    }
+                },
+                "missing-expected-endtask": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endtask`"
+                        ]
+                    }
+                },
+                "unexpected-token-not": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'not' (KW_not)"
+                        ]
+                    }
+                },
+                "unexpected-token-checker": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'checker' (KW_checker)"
+                        ]
+                    }
+                },
+                "unexpected-token-Sym_brack_l": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '[' (Sym_brack_l)"
+                        ]
+                    }
+                },
+                "expected-instantiation-name": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "expected instantiation name"
+                        ]
+                    }
+                },
+                "missing-expected-endpackage": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endpackage`"
+                        ]
+                    }
+                },
+                "unexpected-Sym_brack_l_aster": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token '[*' (Sym_brack_l_aster)"
+                        ]
+                    }
+                },
+                "unexpected-KW_extends": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token 'extends' (KW_extends)"
+                        ]
+                    }
+                },
+                "unexpected-Sym_paren_l_aster": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token '(*' (Sym_paren_l_aster)"
+                        ]
+                    }
+                },
+                "unexpected-KW_package": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token 'package' (KW_package)"
+                        ]
+                    }
+                },
+                "unexpected-KW-and": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token 'and' (KW_and)"
+                        ]
+                    }
+                },
+                "unexpected-Sym_paren_l": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token '(' (Sym_paren_l)"
+                        ]
+                    }
+                },
+                "unexpected-Sym_paren_r": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token ')' (Sym_paren_r)"
+                        ]
+                    }
+                },
+                "unexpected-Sym_brack_r": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "Parse error: unexpected token ']' (Sym_brack_r)"
+                        ]
+                    }
+                },
+                "unsupported-literal-syntax": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'b_",
+                            "(Id_simple)"
+                        ]
+                    }
+                },
+                "unexpected-token-id_simple": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token",
+                            "(Id_simple)"
+                        ]
+                    }
+                },
+                "unexpected-class": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'class' (KW_class)"
+                        ]
+                    }
+                },
+                "missing-end-for-block": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `end`"
+                        ]
+                    }
+                },
+                "missing-endmodule": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endmodule`"
+                        ]
+                    }
+                },
+                "missing-endinterface": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endinterface`"
+                        ]
+                    }
+                },
+                "missing-endclass": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "missing expected `endclass`"
+                        ]
+                    }
+                },
+                "unexpected-at-symbol": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '@' (Sym_at)"
+                        ]
+                    }
+                },
+                "unexpected-dot-symbol": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token '.' (Sym_dot)"
+                        ]
+                    }
+                },
+                "unexpected-repeat": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "unexpected token 'repeat' (KW_repeat)"
+                        ]
+                    }
+                },
+                "expected-comma-or-eod": {
+                    "__trait": {
+                        "exception.log": [
+                            "AND",
+                            "expected comma or end of declarations"
+                        ]
+                    }
+                }
+            },
+            "package-not-found": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "could not find package"
+                    ]
+                }
+            },
+            "jumps-in-loops": {
+                "__trait": {
+                    "exception.log": [
+                        "AND",
+                        "jumps not supported within repeat loops"
+                    ]
+                }
+            }
+        }
+    },
+    "instance-not-found": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "KeyError",
+                "find_instance"
+            ]
+        }
+    },
+    "function-not-found-in-smt2": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "YosysSmtCrossbar.find_function",
+                "KeyError"
+            ]
+        }
+    },
+    "variable-not-found-in-cxx": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "YosysCxxCrossbar",
+                "ValueError",
+                "matches 0 paths (expected 1)"
+            ]
+        }
+    },
+    "z3-exception": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "z3.z3types.Z3Exception"
+            ]
+        }
+    },
+    "pysmt-type-error": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "pysmt.exceptions.PysmtTypeError"
+            ]
+        }
+    },
+    "cxxrtl-name-conflict": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "len(paths) == 1",
+                "AssertionError"
+            ]
+        }
+    },
+    "cannot-find-top-module-state": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "ValueError: cannot find the state type of top module"
+            ]
+        }
+    },
+    "path-constraints-parse-error-in-pysmt-formula-is-str": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "AttributeError: 'str' object has no attribute 'args'",
+                "in _path_constraints_from"
+            ]
+        }
+    },
+    "not-aligned-variables": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "assert len(these_values) == len(those_values)",
+                "AssertionError"
+            ]
+        }
+    }
+}

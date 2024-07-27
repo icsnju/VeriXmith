@@ -1,0 +1,299 @@
+diff --git a/include/klee/Core/Interpreter.h b/include/klee/Core/Interpreter.h
+index 04fdef88..09d1c400 100644
+--- a/include/klee/Core/Interpreter.h
++++ b/include/klee/Core/Interpreter.h
+@@ -164,6 +164,8 @@ public:
+ 
+   virtual void getCoveredLines(const ExecutionState &state,
+                                std::map<const std::string*, std::set<unsigned> > &res) = 0;
++
++  virtual void getSnapshots(const ExecutionState &state, std::string &res) = 0;
+ };
+ 
+ } // End klee namespace
+diff --git a/include/klee/Expr/ExprSMTLIBPrinter.h b/include/klee/Expr/ExprSMTLIBPrinter.h
+index 290caf7b..1f019e87 100644
+--- a/include/klee/Expr/ExprSMTLIBPrinter.h
++++ b/include/klee/Expr/ExprSMTLIBPrinter.h
+@@ -162,6 +162,12 @@ public:
+   /// call will be ineffective.
+   void generateOutput();
+ 
++  /// Print the expression to the llvm::raw_ostream
++  /// setOutput() must be called before calling this.
++  ///
++  /// Only used in ObjectState::printInSMTLIBv2()
++  void printExprOnly(std::vector<ref<Expr> > exprs);
++
+   /// Set which SMTLIBv2 logic to use.
+   /// This only affects what logic is used in the (set-logic <logic>) command.
+   /// The rest of the printed SMTLIBv2 commands are the same regardless of the
+diff --git a/include/klee/klee.h b/include/klee/klee.h
+index 07528595..1e519355 100644
+--- a/include/klee/klee.h
++++ b/include/klee/klee.h
+@@ -158,6 +158,8 @@ extern "C" {
+ 
+   /* Get errno value of the current state */
+   int klee_get_errno(void);
++
++  void klee_save_snapshot(void *const ptr);
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/lib/Core/ExecutionState.cpp b/lib/Core/ExecutionState.cpp
+index cb8a3ced..36d52b6b 100644
+--- a/lib/Core/ExecutionState.cpp
++++ b/lib/Core/ExecutionState.cpp
+@@ -109,6 +109,7 @@ ExecutionState::ExecutionState(const ExecutionState& state):
+     cexPreferences(state.cexPreferences),
+     arrayNames(state.arrayNames),
+     openMergeStack(state.openMergeStack),
++    snapshots(state.snapshots),
+     steppedInstructions(state.steppedInstructions),
+     instsSinceCovNew(state.instsSinceCovNew),
+     unwindingInformation(state.unwindingInformation
+diff --git a/lib/Core/ExecutionState.h b/lib/Core/ExecutionState.h
+index 0e28e04f..56bb9fc4 100644
+--- a/lib/Core/ExecutionState.h
++++ b/lib/Core/ExecutionState.h
+@@ -226,6 +226,9 @@ public:
+   /// @brief The objects handling the klee_open_merge calls this state ran through
+   std::vector<ref<MergeHandler>> openMergeStack;
+ 
++  /// @brief Save the states of interest temporarily
++  std::vector<const ObjectState *> snapshots;
++
+   /// @brief The numbers of times this state has run through Executor::stepInstruction
+   std::uint64_t steppedInstructions = 0;
+ 
+diff --git a/lib/Core/Executor.cpp b/lib/Core/Executor.cpp
+index bc27c5f3..c75fe39a 100644
+--- a/lib/Core/Executor.cpp
++++ b/lib/Core/Executor.cpp
+@@ -4875,6 +4875,19 @@ void Executor::getCoveredLines(const ExecutionState &state,
+   res = state.coveredLines;
+ }
+ 
++void Executor::getSnapshots(const ExecutionState &state,
++                              std::string &res) {
++  std::string Str;
++  llvm::raw_string_ostream info(Str);
++
++  for (const ObjectState *snapshot : state.snapshots) {
++    snapshot->printInSMTLIBv2(info, state);
++    info << "***\n";
++  }
++
++  res = info.str();
++}
++
+ void Executor::doImpliedValueConcretization(ExecutionState &state,
+                                             ref<Expr> e,
+                                             ref<ConstantExpr> value) {
+diff --git a/lib/Core/Executor.h b/lib/Core/Executor.h
+index 465751f6..7c336e11 100644
+--- a/lib/Core/Executor.h
++++ b/lib/Core/Executor.h
+@@ -573,6 +573,8 @@ public:
+                        std::map<const std::string *, std::set<unsigned>> &res)
+       override;
+ 
++  void getSnapshots(const ExecutionState &state, std::string &res) override;
++
+   Expr::Width getWidthForLLVMType(llvm::Type *type) const;
+   size_t getAllocationAlignment(const llvm::Value *allocSite) const;
+ 
+diff --git a/lib/Core/Memory.cpp b/lib/Core/Memory.cpp
+index d77270f2..deea2e5f 100644
+--- a/lib/Core/Memory.cpp
++++ b/lib/Core/Memory.cpp
+@@ -17,6 +17,7 @@
+ #include "klee/ADT/BitArray.h"
+ #include "klee/Expr/ArrayCache.h"
+ #include "klee/Expr/Expr.h"
++#include "klee/Expr/ExprSMTLIBPrinter.h"
+ #include "klee/Support/OptionCategories.h"
+ #include "klee/Solver/Solver.h"
+ #include "klee/Support/ErrorHandling.h"
+@@ -590,3 +591,23 @@ void ObjectState::print() const {
+     llvm::errs() << "\t\t[" << un->index << "] = " << un->value << "\n";
+   }
+ }
++
++void ObjectState::printInSMTLIBv2(llvm::raw_ostream &os,
++                                  const ExecutionState &state) const {
++  // create printer obj
++  ExprSMTLIBPrinter printer;
++  printer.setOutput(os);
++  printer.setAbbreviationMode(ExprSMTLIBPrinter::ABBR_NONE);
++  printer.setConstantDisplayMode(ExprSMTLIBPrinter::BINARY);
++
++  std::vector<ref<Expr> > cells;
++  cells.clear();
++
++  for (unsigned i = 0; i < size; i++) {
++    ref<Expr> e = read8(i);
++    if (e.isNull()) continue;
++    cells.push_back(e);
++  }
++
++  printer.printExprOnly(cells);
++}
+\ No newline at end of file
+diff --git a/lib/Core/Memory.h b/lib/Core/Memory.h
+index 3b365c20..2c26a091 100644
+--- a/lib/Core/Memory.h
++++ b/lib/Core/Memory.h
+@@ -234,6 +234,11 @@ public:
+   void write64(unsigned offset, uint64_t value);
+   void print() const;
+ 
++  /// Looks at all the bytes of this object,
++  /// puts them in the ostream os in SMTLIBv2 format.
++  void printInSMTLIBv2(llvm::raw_ostream &os,
++                       const ExecutionState &state) const;
++
+   /// Generate concrete values for each symbolic byte of the object and put them
+   /// in the concrete store.
+   ///
+diff --git a/lib/Core/SpecialFunctionHandler.cpp b/lib/Core/SpecialFunctionHandler.cpp
+index b0c28fbc..2256fffe 100644
+--- a/lib/Core/SpecialFunctionHandler.cpp
++++ b/lib/Core/SpecialFunctionHandler.cpp
+@@ -101,6 +101,7 @@ static constexpr std::array handlerInfo = {
+   add("klee_define_fixed_object", handleDefineFixedObject, false),
+   add("klee_get_obj_size", handleGetObjSize, true),
+   add("klee_get_errno", handleGetErrno, true),
++  add("klee_save_snapshot", handleSaveSnapshot, true),
+ #ifndef __APPLE__
+   add("__errno_location", handleErrnoLocation, true),
+ #else
+@@ -528,6 +529,22 @@ void SpecialFunctionHandler::handlePrintExpr(ExecutionState &state,
+   llvm::errs() << msg_str << ":" << arguments[1] << "\n";
+ }
+ 
++void SpecialFunctionHandler::handleSaveSnapshot(ExecutionState &state,
++                                                KInstruction *target,
++                                                std::vector<ref<Expr> > &arguments) {
++  assert(arguments.size()==1 &&
++         "invalid number of arguments to klee_save_snapshot");
++
++  Executor::ExactResolutionList rl;
++  executor.resolveExact(state, arguments[0], rl, "save_snapshot");
++
++  for (Executor::ExactResolutionList::iterator it = rl.begin(),
++         ie = rl.end(); it != ie; ++it) {
++    auto objectState = it->first.second;
++    it->second->snapshots.push_back(new ObjectState(*objectState));
++  }
++}
++
+ void SpecialFunctionHandler::handleSetForking(ExecutionState &state,
+                                               KInstruction *target,
+                                               std::vector<ref<Expr> > &arguments) {
+diff --git a/lib/Core/SpecialFunctionHandler.h b/lib/Core/SpecialFunctionHandler.h
+index 3fdbf8f8..37ef44fa 100644
+--- a/lib/Core/SpecialFunctionHandler.h
++++ b/lib/Core/SpecialFunctionHandler.h
+@@ -113,6 +113,7 @@ namespace klee {
+     HANDLER(handleRealloc);
+     HANDLER(handleReportError);
+     HANDLER(handleRevirtObjects);
++    HANDLER(handleSaveSnapshot);
+     HANDLER(handleSetForking);
+     HANDLER(handleSilentExit);
+     HANDLER(handleStackTrace);
+diff --git a/lib/Expr/ExprSMTLIBPrinter.cpp b/lib/Expr/ExprSMTLIBPrinter.cpp
+index c1bd5822..6bb383f3 100644
+--- a/lib/Expr/ExprSMTLIBPrinter.cpp
++++ b/lib/Expr/ExprSMTLIBPrinter.cpp
+@@ -664,6 +664,23 @@ void ExprSMTLIBPrinter::printQueryInSingleAssert() {
+   printAssert(queryAssert);
+ }
+ 
++void ExprSMTLIBPrinter::printExprOnly(std::vector<ref<Expr> > exprs) {
++  reset();
++  for (std::vector<ref<Expr> >::const_iterator i = exprs.begin(),
++                                               e = exprs.end();
++       i != e; ++i) {
++    scan(*i);
++  }
++  printArrayDeclarations();
++  *o << "---\n";
++  for (std::vector<ref<Expr> >::const_iterator i = exprs.begin(),
++                                               e = exprs.end();
++       i != e; ++i) {
++    printExpression(*i, getSort(*i));
++    *o << "\n";
++  }
++}
++
+ void ExprSMTLIBPrinter::printAction() {
+   // Ask solver to check for satisfiability
+   *o << "(check-sat)\n";
+diff --git a/runtime/Runtest/intrinsics.c b/runtime/Runtest/intrinsics.c
+index 18eb3cff..8682c457 100644
+--- a/runtime/Runtest/intrinsics.c
++++ b/runtime/Runtest/intrinsics.c
+@@ -177,3 +177,5 @@ void klee_set_forking(unsigned enable) {}
+ 
+ void klee_open_merge() {}
+ void klee_close_merge() {}
++
++void klee_save_snapshot(void *const ptr) {}
+diff --git a/tools/klee-replay/klee-replay.c b/tools/klee-replay/klee-replay.c
+index 82c638c2..48396d12 100644
+--- a/tools/klee-replay/klee-replay.c
++++ b/tools/klee-replay/klee-replay.c
+@@ -514,6 +514,10 @@ void klee_mark_global(void *object) {
+   ;
+ }
+ 
++void klee_save_snapshot(void *const ptr) {
++  ;
++}
++
+ /*** HELPER FUNCTIONS ***/
+ 
+ static void __emit_error(const char *msg) {
+diff --git a/tools/klee/main.cpp b/tools/klee/main.cpp
+index 18e67fe6..a3d71644 100644
+--- a/tools/klee/main.cpp
++++ b/tools/klee/main.cpp
+@@ -119,6 +119,11 @@ namespace {
+                 cl::desc("Write .sym.path files for each test case (default=false)"),
+                 cl::cat(TestCaseCat));
+ 
++  cl::opt<bool>
++  WriteSnapshots("write-snapshots",
++                 cl::desc("Write the snapshots saved for each test case (default=false)"),
++                 cl::cat(TestCaseCat));
++
+ 
+   /*** Startup options ***/
+ 
+@@ -600,6 +605,15 @@ void KleeHandler::processTestCase(const ExecutionState &state,
+       if (f)
+         *f << "Time to generate test case: " << elapsed_time << '\n';
+     }
++
++    if (WriteSnapshots) {
++      std::string snapshots;
++      m_interpreter->getSnapshots(state, snapshots);
++
++      auto f = openTestFile("snapshots", id);
++      if (f)
++        *f << snapshots;
++    }
+   } // if (!WriteNone)
+ 
+   if (errorMessage && OptExitOnError) {
+@@ -783,6 +797,7 @@ static const char *modelledExternals[] = {
+   "klee_warning",
+   "klee_warning_once",
+   "klee_stack_trace",
++  "klee_save_snapshot",
+ #ifdef SUPPORT_KLEE_EH_CXX
+   "_klee_eh_Unwind_RaiseException_impl",
+   "klee_eh_typeid_for",

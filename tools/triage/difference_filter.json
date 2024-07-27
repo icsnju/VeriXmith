@@ -1,0 +1,111 @@
+{
+    "cxxrtl-only": {
+        "__trait": {
+            "strategy.json": [
+                "AND",
+                "YosysWriteCxx",
+                [
+                    "NOT",
+                    [
+                        "OR",
+                        "VerilatorTransformer",
+                        "YosysWriteSmt2"
+                    ]
+                ]
+            ]
+        },
+        "dependency-resolving-error-1": {
+            "__trait": {
+                "yosys-write-cxxrtl/top.cpp": [
+                    "AND",
+                    "bool converged = true;"
+                ],
+                "yosys-write-cxxrtl0/top.cpp": [
+                    "AND",
+                    "bool converged = false;"
+                ]
+            }
+        },
+        "dependency-resolving-error-2": {
+            "__trait": {
+                "yosys-write-cxxrtl/top.cpp": [
+                    "AND",
+                    "bool converged = false;"
+                ],
+                "yosys-write-cxxrtl0/top.cpp": [
+                    "AND",
+                    "bool converged = true;"
+                ]
+            }
+        }
+    },
+    "verilator-only": {
+        "__trait": {
+            "strategy.json": [
+                "AND",
+                "VerilatorTransformer",
+                [
+                    "NOT",
+                    [
+                        "OR",
+                        "YosysWriteCxx",
+                        "YosysWriteSmt2"
+                    ]
+                ]
+            ]
+        }
+    },
+    "smt2-only": {
+        "__trait": {
+            "strategy.json": [
+                "AND",
+                "YosysWriteSmt2",
+                [
+                    "NOT",
+                    [
+                        "OR",
+                        "VerilatorTransformer",
+                        "YosysWriteCxx"
+                    ]
+                ]
+            ]
+        }
+    },
+    "with-cxxrtl": {
+        "__trait": {
+            "strategy.json": [
+                "AND",
+                "YosysWriteCxx"
+            ]
+        },
+        "has-shift-operator": {
+            "__trait": {
+                "input.v": [
+                    "OR",
+                    " << ",
+                    " <<< ",
+                    " >> ",
+                    " >>> "
+                ]
+            }
+        },
+        "low-debug-level": {
+            "__trait": {
+                "strategy.json": [
+                    "OR",
+                    "-g1",
+                    "-g2"
+                ]
+            }
+        }
+    },
+    "verilator-smt2": {
+        "__trait": {
+            "strategy.json": [
+                "AND",
+                "VerilatorTransformer",
+                "YosysWriteSmt2"
+            ]
+        }
+    }
+}

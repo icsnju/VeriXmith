@@ -1,0 +1,32 @@
+{
+    "InputSets": {
+        "Verilog-GitHub": {
+            "dirpath": "rtls/verilog_github",
+            "size": 100
+        },
+        "Verilog-Verismith": {
+            "dirpath": "rtls/verilog_verismith",
+            "size": 100
+        },
+        "Verilog-VlogHammer": {
+            "dirpath": "rtls/verilog_vloghammer",
+            "size": 100
+        }
+    },
+    "Configurations": {
+        "Mutants": [
+            10,
+            5,
+            0
+        ],
+        "Validations": [
+            10,
+            5,
+            2,
+            1
+        ],
+        "Completeness": [
+            true
+        ]
+    }
+}

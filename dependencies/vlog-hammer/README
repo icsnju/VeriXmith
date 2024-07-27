@@ -1,0 +1,54 @@
+
+         Vlog-Hammer -- A Verilog Synthesis Regression Test
+         ==================================================
+
+This test generates a large number of small Verilog modules and checks
+different synthesis tools for equivialence. The following tools are
+supported:
+
+	Yosys (no specific version)
+	Xilinx Vivado WebPack (2018.3)
+	Xilinx ISE (XST) WebPack (14.7)
+	Altera Quartus II Web Edition (17.0)
+	Cadence Conformal LEC (8.1)
+	Synopsys Design Compiler (C-2009.06)
+
+Note: Cadence Conformal and Synopsys Design Compiler are disabled by
+default. Add "lec" and "dc" to SYN_LIST in the Makefile to enable them.
+
+The built-in SAT-solver in Yosys is used for formal equivalence checking.
+The test cases that fail this check and the found example patterns are
+then tried using the following Verilog simulators:
+
+	Xilinx ISIM (from Xilinx ISE 14.7)
+	Xilinx XSIM (from Xilinx Vivado 2018.3)
+	Modelsim 10.5b (from Quartus 17.0)
+	Icarus Verilog (no specific version)
+	Verilator (no specific version)
+	Yosys (no specific version)
+
+Note: XST and ISIM is disabled by default as Xilinx won't fix bugs in those
+tools anymore.
+
+Instructions:
+
+ * Install Yosys (yosys), Icarus Verilog (iverilog) and Verilator
+ * Install Xilinx Vivado WebPack 2018.3 in /opt/Xilinx/Vivado/2018.3/
+ * Install Altera Quartus Web Edition 17.0 in /opt/intelFPGA_lite/17.0
+
+ * Generate Test Cases:
+
+	make purge generate
+
+ * Synthesize Test Cases:
+
+	make -j4 -l8 syn
+
+ * Check Individual Synthesis Results vs. Yosys RTL:
+
+	make -j4 -l8 check
+
+ * Generate Reports on Failed Test Cases:
+
+	make -j4 -l8 report
+

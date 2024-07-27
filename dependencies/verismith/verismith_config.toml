@@ -1,0 +1,27 @@
+[probability]
+  expr.binary = 5
+  expr.concatenation = 5
+  expr.number = 1
+  expr.rangeselect = 5
+  expr.signed = 5
+  expr.string = 0
+  expr.ternary = 5
+  expr.unary = 5
+  expr.unsigned = 5
+  expr.variable = 5
+  moditem.assign = 5
+  moditem.combinational = 5
+  moditem.instantiation = 5
+  moditem.sequential = 5
+  statement.blocking = 0
+  statement.conditional = 5
+  statement.forloop = 0
+  statement.nonblocking = 5
+
+[property]
+  module.depth = 2
+  module.max = 5
+  size = 8
+  statement.depth = 2
+  sample.method = "hat"
+  sample.size = 10

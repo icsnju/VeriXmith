@@ -1,0 +1,45 @@
+{
+    "in-type-of": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "in _type_of"
+            ]
+        },
+        "multi-or-zero-declarations": {
+            "__trait": {
+                "exception.log": [
+                    "AND",
+                    "core.mutators.mutator.MutationError",
+                    "multiple (or zero) declarations of"
+                ]
+            }
+        }
+    },
+    "in-parent-of": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "in _parent_of"
+            ]
+        }
+    },
+    "yosys-mutation-failed": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "invoke.exceptions.UnexpectedExit",
+                "mutations.ys"
+            ]
+        }
+    },
+    "tree-sitter-parser-error": {
+        "__trait": {
+            "exception.log": [
+                "AND",
+                "core.mutators.mutator.MutationError",
+                "tree-sitter parser failure"
+            ]
+        }
+    }
+}

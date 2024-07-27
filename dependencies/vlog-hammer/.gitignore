@@ -1,0 +1,17 @@
+/scripts/generate
+/syn_*
+/check_*
+/cache_*
+/report
+/report.html
+/monitor.html
+/monitor.txt
+/monitor.dat
+/temp
+/rtl
+/testbench/rtl
+/testbench/spec
+/testbench/refdat
+/testbench/temp
+/testbench/check_*
+/testbench/vloghammer_tb.tar.bz2

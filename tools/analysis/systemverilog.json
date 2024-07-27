@@ -1,0 +1,24 @@
+{
+    "InputSets": {
+        "SystemVerilog-GitHub": {
+            "dirpath": "rtls/systemverilog_github",
+            "size": 100
+        }
+    },
+    "Configurations": {
+        "Mutants": [
+            10,
+            5,
+            0
+        ],
+        "Validations": [
+            10,
+            5,
+            2,
+            1
+        ],
+        "Completeness": [
+            true
+        ]
+    }
+}
