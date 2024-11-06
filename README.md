@@ -1,6 +1,13 @@
 # VeriXmith
 
-VeriXmith interlinks a broad array of tools associated with logical synthesis and simulation for cross-checking. It leverages the implicit semantic consistency between representations of one circuit design. Specifically, compilers and satisfiability solvers can be interconnected with semantics extractors to broaden the domain of semantically equivalent circuit representations applicable to cross-checking.
+<div align="center">
+
+<img src="overview.jpg"
+     style="max-width: 70%;" />
+
+</div>
+
+VeriXmith interlinks design tools involved in logical synthesis and simulation for cross-checking. These tools process circuit designs and produce outputs in different languages, such as Verilog netlists from synthesizers and C++ programs from simulators. Since these outputs represent the same circuit semantics, we can leverage this semantic consistency to verify the tools that translate one representation into another. Our approach involves creating semantics extractors to extend the range of circuit representations suitable for semantic equivalence checking by converting them into a canonical and comparable form. Additionally, we developed mutation operators for Verilog designs to introduce new data/control paths and language constructs, enhancing the diversity of circuit designs as test inputs.
 
 VeriXmith currently depends on (a.k.a. cross-checks) the following projects:
 
@@ -55,6 +62,8 @@ Run the following command to get information of all available commands:
 python3 -m tools.deploy --help
 ```
 
+## Internals
+
 ### Directory Description
 
 ```
@@ -68,6 +77,36 @@ python3 -m tools.deploy --help
 ├── tasks.py            # A CLI-invokable wrapper for functions in core/api.py
 └── tools               # Useful scripts (start Docker containers, process bug reports, etc.)
 ```
+
+### Primary Classes
+
+- `Circuit` (defined in [circuit.py](./core/circuits/circuit.py)). This class represents circuit designs. Its subclasses cover all the nodes in Figure (b) above (e.g., `VerilogCircuit`, `CppCircuit`). Circuits may be in the same language (e.g., C++) but produced by different compilers (e.g., Yosys and Verilator both produce C++ simulators). Thus, specific subclasses such as `VerilatorCppCircuit` and `YosysCppCircuit` are defined under `CppCircuit`.
+  - The `is_equivalent_to()` method enables equivalence checking for circuit representations.
+- `MetaTranslator` (defined in [translator.py](./core/translators/translator.py)). Each compiler supported by VeriXmith has a corresponding `MetaTranslator` class.
+  - The class variable `edges` specifies input and output formats.
+  - The class variable `alternative_options` lists command-line options.
+  - The `translate()` method takes a `Circuit` object as the compiler's input, performs compilation with given options, and returns the resulting `Circuit` object.
+
+### Mutators
+
+14 semantic-aware simulators are implemented through tree-sitter-verilog. They can be found in [heuristics.py](./core/mutators/heuristics.py).
+
+| Name (Type) 	| Description 	|
+|---	|---	|
+| MakeRepeat (P) 	| Move an existing statement into a `repeat` loop. 	|
+| MakeLoopGenerate (P) 	| Move an existing statement into a `for` loop. 	|
+| ChangeIfCond (C) 	| Merge two `if-else` statements with conditions $c_1$ and $c_2$ respectively into one `if-else` statement with a new condition constructed from $c_1$ and $c_2$, e.g., ($c_1$ \|\| $c_2$). 	|
+| RemoveIfCond (C) 	| Make one branch of an `if-else` statement unconditional by removing the other branch of the conditional statement. 	|
+| SplitIfStatement (C) 	| Split one `if-else` statement into two `if-else` statements. Each new statement holds the same condition and part of the logic from the original branch(es). 	|
+| MakeFunction (D) 	| Construct a function definition from an expression and inject random function calls to this function in the module containing that expression. 	|
+| DuplicateModule (D) 	| Make a renamed copy of a module that is instantiated multiple times and redirect a subset of the instantiations of this module to the new one. 	|
+| SplitAssignment (D) 	| Split a non-blocking or continuous assignment into several assignments, in which each assignment computes 1 bit. 	|
+| LoopAssignment (D) 	| Convert a non-blocking or continuous assignment into a `for` loop, in which each iteration computes 1 bit. 	|
+| DuplicateAssignment (D) 	| Append a new assignment to 1 bit of the left value of an existing assignment after it. 	|
+| MakeArray (D) 	| Turn an existing non-array net or variable into an array of random dimensions. <br>  Assignments to this net/variable write to all array elements;<br>  uses of this net/variable are replaced with one random array element. 	|
+| ChangeUnaryOp (D) 	| Replace one unary operator with another. 	|
+| ChangeBinaryOp (D) 	| Replace one binary operator with another. 	|
+| DuplicateExpr (D) 	| Replace an expression $e$ with a new expression constructed from itself (e.g., ($e$ \& $e$)). 	|
 
 ## Known limitations
 
