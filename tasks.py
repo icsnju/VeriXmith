@@ -7,7 +7,7 @@ from invoke.tasks import task
 import core.api
 from core.thirdparty import miscellaneous, verilator, yosys
 
-core.api.set_result_dir(Path.cwd() / 'results')
+core.api.set_result_dir(Path.cwd() / 'failures')
 
 
 @task

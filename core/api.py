@@ -124,7 +124,7 @@ def convert(input_program: Path, conversion: Conversion) -> Circuit | None:
             # Save exception information
             workspace.save_to_file(traceback.format_exc(), EXCEPTION_FILENAME)
             # Save the entire temporary directory
-            workspace.save_as('crashes')
+            workspace.save_as('compilation')
 
 
 def equivalence_check(input_program: Path, conversions: tuple[Conversion, ...], test_only: bool):
@@ -156,7 +156,7 @@ def equivalence_check(input_program: Path, conversions: tuple[Conversion, ...], 
                                 equivalence_classes[pivot].add(conversion)
                                 break
                     else:  # Not equivalent with existing circuits
-                        # NOTE: Exceptions raised in the equivalence check are considered as differences
+                        # NOTE: Exceptions raised in the equivalence check are included
                         equivalence_classes[circuit].add(conversion)
 
         if len(equivalence_classes) > 1:
@@ -168,7 +168,7 @@ def equivalence_check(input_program: Path, conversions: tuple[Conversion, ...], 
             # except Exception:
             #     pass  # Ignore any exception (e.g., NotImplementedError)
             workspace.save_to_file(pformat(equivalence_classes), DIFFERENCE_FILENAME)
-            workspace.save_as('differences')
+            workspace.save_as('cross-checking')
 
 
 def run_validation(validation_groups: Iterable[ValidationGroup], /, *, test_only: bool, n_jobs: int) -> None:
@@ -191,7 +191,7 @@ def mutate(seed_path: Path, output_dir: Path, max_cnt: int) -> None:
             (output_dir / f'{seed_path.stem}-mutated-{i}{seed_path.suffix}').write_bytes(mutant)
 
         if mutator.has_error:  # but recoverable
-            workspace.save_as('mutation_errors')
+            workspace.save_as('mutation')
 
 
 def run_mutation(seed_dir: Path, output_dir: Path, n_times: int, n_jobs: int, debug: bool) -> None:
