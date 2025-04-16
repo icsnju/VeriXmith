@@ -173,7 +173,7 @@ class Configuration:
             # NOTE: Expected structure of this result path:
             # result-path/
             #   [input-set]-[n]x[n]/
-            #   *-results/ (or *-results.tar.gz)
+            #   *-failures/ (or *-failures.tar.gz)
             #   *-mutants/ (or *-mutants.tar.gz)
 
             seed_dir = result_path / f'{input_set_name}-{size}x1'
@@ -205,7 +205,7 @@ class Configuration:
 
                 log_subprocess_output(merge_mutants, shell=True, check=True)
 
-            if not list(result_path.glob(identifier + '-*-results' + '.tar.gz' if hostname else '')):
+            if not list(result_path.glob(identifier + '-*-failures' + '.tar.gz' if hostname else '')):
                 batch_test(identifier,
                            input_dir.as_posix(),
                            result_path.as_posix(),
@@ -311,7 +311,7 @@ def batch_test(label: Annotated[str, typer.Argument(help='Label for this group o
                hostname: Annotated[Optional[str], typer.Option(help='Name of the remote server')] = None):
     """Start a new test campaign."""
 
-    input_path, output_path = deploy_helper(input_path, result_path, timestamped_name(label, 'results'), hostname)
+    input_path, output_path = deploy_helper(input_path, result_path, timestamped_name(label, 'failures'), hostname)
 
     logging.info(f'Starting the job...')
     start_task('default',
@@ -346,7 +346,7 @@ def regression_test(
     """Start regression tests."""
 
     input_path, output_path = deploy_helper(extract_input_and_strategy(parent_dir, input_filename, strategy_filename),
-                                            result_path, timestamped_name(label, 'regression-results'), hostname)
+                                            result_path, timestamped_name(label, 'regression-failures'), hostname)
 
     logging.info(f'Starting the job...')
     start_task('regression',

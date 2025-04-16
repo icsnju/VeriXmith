@@ -50,11 +50,11 @@ There are three ways to work with VeriXmith:
 Start a cross-checking process with a fixed set of Verilog or SystemVerilog examples:
 
 ```
-python3 -m tools.deploy batch-test example1 examples/verilog/ results/ 10 VerilogCircuit SmtCircuit
-python3 -m tools.deploy batch-test example2 examples/systemverilog/ results/ 10 SystemVerilogCircuit VerilogCircuit
+python3 -m tools.deploy batch-test example1 examples/verilog/ failures/ 10 VerilogCircuit SmtCircuit
+python3 -m tools.deploy batch-test example2 examples/systemverilog/ failures/ 10 SystemVerilogCircuit VerilogCircuit
 ```
 
-- **Explanation**: `batch-test` searches input programs from `examples/verilog/` (or `examples/systemverilog/`), samples `10` nodes in the compilation space, and saves all output to `results/` after cross-checking.
+- **Explanation**: `batch-test` searches input programs from `examples/verilog/` (or `examples/systemverilog/`), samples `10` nodes in the compilation space, and saves all output to `failures/` after cross-checking.
 
 Run the following command to get information of all available commands:
 

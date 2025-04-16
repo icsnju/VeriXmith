@@ -153,9 +153,9 @@ dmypy.json
 cython_debug/
 
 # Output files and directories
-results/tmp*
-results/crashes/
-results/differences/
-results/mutation_errors/
+failures/tmp*
+failures/mutation/
+failures/compilation/
+failures/cross-checking/
 rtls/
 tools/analysis/*.pdf

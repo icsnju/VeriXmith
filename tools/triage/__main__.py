@@ -177,14 +177,14 @@ def diff_classifier(parent_dir: Path) -> int:
 
 
 def result_dirs_in(parent_dir: Path, tasks: dict) -> list[tuple[Path, str, int, int, bool]]:
-    results = list()
+    failures = list()
     for name in tasks['InputSets']:
         for m, v, c in product(tasks['Configurations']['Mutants'], tasks['Configurations']['Validations'],
                                tasks['Configurations']['Completeness']):
-            result_dir = list(parent_dir.glob(f'{name}-{m}-{v}-{c}-*-results/'))
+            result_dir = list(parent_dir.glob(f'{name}-{m}-{v}-{c}-*-failures/'))
             assert len(result_dir) == 1
-            results.append((result_dir[0], name, m, v, c))
-    return sorted(results)
+            failures.append((result_dir[0], name, m, v, c))
+    return sorted(failures)
 
 
 @app.command()
@@ -197,8 +197,8 @@ def sort(parent_dir: str, config_file: str):
 def count(tasks_file: str, parent_dir: str, output_csv: str):
 
     parent_path = Path(parent_dir)
-    # Unzip *-results.tar.gz files
-    for ar in parent_path.glob('*-results.tar.gz'):
+    # Unzip *-failures.tar.gz files
+    for ar in parent_path.glob('*-failures.tar.gz'):
         target_dir = ar.with_name(ar.name.strip('.tar.gz'))
         if target_dir.exists() and target_dir.is_dir():
             rmtree(target_dir)
@@ -206,24 +206,28 @@ def count(tasks_file: str, parent_dir: str, output_csv: str):
         subprocess.run(['tar', 'xf', ar.as_posix(), f'--directory={target_dir.as_posix()}', '--warning=no-timestamp'])
 
     data = list()
-    data.append(['InputSets', 'Mutants', 'Validations', 'Completeness', 'Crashes', 'Differences'])
+    data.append([
+        'InputSets', 'Mutants', 'Validations', 'Completeness', 'Compilation Space Failures',
+        'Cross-checking Space Failures'
+    ])
 
     for result_dir, name, m, v, c in result_dirs_in(parent_path, json.load(open(tasks_file))):
 
-        unique_crashes = len(apply_filter(result_dir / 'crashes', load_filter('tools/triage/crash_filter.json')))
-        logging.info(f'Detected {unique_crashes} unique crash(es) in {result_dir.as_posix()}.')
+        unique_compilation_failures = len(
+            apply_filter(result_dir / 'compilation', load_filter('tools/triage/crash_filter.json')))
+        logging.info(f'Detected {unique_compilation_failures} unique crash(es) in {result_dir.as_posix()}.')
 
-        unique_differences = len(apply_filter(result_dir / 'differences',
-                                              load_filter('tools/triage/crash_filter.json')))
-        unique_differences += diff_classifier(result_dir / 'differences')
-        logging.info(f'Detected {unique_differences} unique difference(s) in {result_dir.as_posix()}.')
+        unique_cross_checking_failures = len(
+            apply_filter(result_dir / 'cross-checking', load_filter('tools/triage/crash_filter.json')))
+        unique_cross_checking_failures += diff_classifier(result_dir / 'cross-checking')
+        logging.info(f'Detected {unique_cross_checking_failures} unique difference(s) in {result_dir.as_posix()}.')
 
         # Modify the "InputSet" string
         language, source = name.split('-')
         start, end = Path(output_csv).stem.split('-')
         name = f'{language}[{source}]({start},{end})'
 
-        data.append([name, m, v, c, unique_crashes, unique_differences])
+        data.append([name, m, v, c, unique_compilation_failures, unique_cross_checking_failures])
 
     writer = csv.writer(open(output_csv, 'w'))
     writer.writerows(data)

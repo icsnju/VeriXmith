@@ -304,7 +304,7 @@ class YosysCxxCrossbar(VerilatorCppCrossbar):
             # NOTE: After one of the elements in a CompoundItem is processed,
             # the following elements from the same CompoundItem will be skipped.
             # This means that the attributes in CxxImplItem, especially "is_symbolic", are expected to be the same
-            # for all elements in one array. This could lead to hard-to-debug differences in the future.
+            # for all elements in one array. This could lead to hard-to-debug problems in the future.
             if origin_name in seen:
                 continue
             seen.add(origin_name)

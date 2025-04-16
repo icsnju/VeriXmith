@@ -40,7 +40,7 @@ fi
 
 container_name=$(basename ${output_archive_or_directory%.tar.gz}) # remove the suffix
 if [ "$output_archive_or_directory" != "${output_archive_or_directory%.tar.gz}" ]; then
-  output_dir=results
+  output_dir=failures
 else
   output_dir=$output_archive_or_directory
 fi
@@ -54,7 +54,7 @@ fi
 if [ "$task_name" == "regression" ]; then
   commands+=("inv regression-test /app/verixmith/rtls --input-suffix="$input_suffix" --n-jobs=$n_jobs")
 elif [ "$task_name" == "mutate" ]; then
-  commands+=("inv mutate /app/verixmith/rtls /app/verixmith/results --n-times=$n_times --n-jobs=$n_jobs")
+  commands+=("inv mutate /app/verixmith/rtls /app/verixmith/failures --n-times=$n_times --n-jobs=$n_jobs")
   if [ -n "$seed" ]; then
     commands+=(--seed="$seed")
   fi
@@ -75,10 +75,10 @@ docker run -i -t -d \
   --memory=$max_memory \
   --name $container_name \
   --mount type=bind,source="$(realpath $input_dir)",target=/app/verixmith/rtls \
-  --mount type=bind,source="$(realpath $output_dir)",target=/app/verixmith/results \
+  --mount type=bind,source="$(realpath $output_dir)",target=/app/verixmith/failures \
   verixmith:latest \
   sh -c \
-  "sudo chmod -R a+w /app/verixmith/rtls /app/verixmith/results && ${commands[*]}"
+  "sudo chmod -R a+w /app/verixmith/rtls /app/verixmith/failures && ${commands[*]}"
 
 docker wait $container_name
 docker logs $container_name
@@ -88,7 +88,7 @@ log "***** Collecting the results... *****"
 sudo chown -R zyk:zyk $output_dir
 
 if [ "$task_name" == "mutate" ]; then
-  rm -rf $output_dir/mutation_errors
+  rm -rf $output_dir/mutation
 fi
 rm -rf $output_dir/tmp*
 

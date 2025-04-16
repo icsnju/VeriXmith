@@ -90,7 +90,7 @@ def sample_compilation_space(rtl_dir: Path,
 def convert(input_program: Path, conversion: Conversion) -> Circuit | None:
     """Perform given conversion on the input program.
 
-    When any exception occurs, save the following files to result_dir/crashes/.
+    When any exception occurs, save the following files to result_dir/compilation/.
     1. Input program.
     2. Conversion in JSON format.
     3. Stack trace and program output (if any)."""
