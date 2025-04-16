@@ -73,7 +73,7 @@ COPY dependencies/verilator /tmp/verilator/
 RUN cd /tmp/verilator && \
     autoconf && \
     ./configure && \
-    make -j && \
+    make && \
     make install && \
     cd .. && \
     rm -rf verilator
