@@ -132,6 +132,7 @@ ENV Z3_VERSION=4.8.15
 ENV USE_LIBCXX=1
 ENV KLEE_RUNTIME_BUILD="Debug+Asserts"
 ENV SQLITE_VERSION=3400100
+ENV CMAKE_POLICY_VERSION_MINIMUM=3.5
 LABEL maintainer="KLEE Developers"
 
 # Create ``klee`` user for container with password ``klee``.
