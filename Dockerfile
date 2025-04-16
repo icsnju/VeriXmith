@@ -91,7 +91,7 @@ ADD https://api.github.com/repos/tree-sitter/tree-sitter-verilog/git/refs/heads/
 # Download and build the tree-sitter language implementation for Verilog
 RUN git clone https://github.com/tree-sitter/tree-sitter-verilog.git /tmp/tree-sitter-verilog/ && \
     python3 -c \
-    "from tree_sitter import Language; Language.build_library('/tmp/tree-sitter.so', ['/tmp/tree-sitter-verilog'])" \
+    "from tree_sitter import Language; Language.build_library('/tmp/tree-sitter.so', ['/tmp/tree-sitter-verilog'])" && \
     rm -rf /tmp/tree-sitter-verilog
 
 
