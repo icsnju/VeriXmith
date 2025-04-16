@@ -198,7 +198,6 @@ COPY --from=python_packages /tmp/wheelhouse /tmp/wheelhouse/
 COPY --from=python_packages /tmp/tree-sitter.so /tmp/tree-sitter.so
 
 COPY requirements.txt /tmp/requirements.txt
-COPY dependencies/patch_pysmt.sh /tmp/patch_pysmt
 
 ENV LLVM_COMPILER=clang
 ENV LLVM_COMPILER_PATH=/tmp/llvm-130-install_O_D_A/bin
@@ -220,8 +219,7 @@ RUN adduser --disabled-password verixmith && \
     echo 'verixmith ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
 USER verixmith
 
-RUN pip install --no-index --find-links=/tmp/wheelhouse -r /tmp/requirements.txt && \
-    ls /home/verixmith/.local/lib/python3.*/site-packages/pysmt/formula.py | xargs /tmp/patch_pysmt --in-place=.backup
+RUN pip install --no-index --find-links=/tmp/wheelhouse -r /tmp/requirements.txt
 
 ENV VERIXMITH_ROOT=/app/verixmith
 WORKDIR ${VERIXMITH_ROOT}
