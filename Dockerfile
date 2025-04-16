@@ -44,11 +44,11 @@ RUN curl https://api.github.com/repos/uw-pluverse/perses/releases/135243412 \
 
 
 # Build sv2v from source
-FROM --platform=linux/amd64 haskell:8 AS sv2v_base
+FROM --platform=linux/amd64 haskell:slim-bookworm AS sv2v_base
 
-ADD https://api.github.com/repos/zachjs/sv2v/git/refs/heads/master /tmp/versions/sv2v.json
 RUN git clone https://github.com/zachjs/sv2v.git /tmp/sv2v && \
     cd /tmp/sv2v && \
+    git checkout v0.0.13 && \
     make
 
 
