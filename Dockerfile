@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Build Yosys from source
-FROM --platform=linux/amd64 python:3.12.1-slim-bookworm AS yosys_and_perses_base
+FROM --platform=linux/amd64 python:3.12.1-slim-bookworm AS yosys_base
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -37,10 +37,6 @@ RUN curl https://api.github.com/repos/chipsalliance/synlig/releases/147437203 \
     | jq .assets[1] | grep "browser_download_url" | grep -Eo 'https://[^\"]*' \
     | xargs wget -O - | tar -xz && ./install_plugin.sh
 RUN chmod o+r /usr/local/share/yosys/plugins/systemverilog.so
-# Install Perses, Syntax-Directed Program Reduction
-RUN curl https://api.github.com/repos/uw-pluverse/perses/releases/135243412 \
-    | jq .assets[0] | grep "browser_download_url" | grep -Eo 'https://[^\"]*' \
-    | xargs wget -O - > /tmp/perses_deploy.jar
 
 
 # Build sv2v from source
@@ -166,19 +162,6 @@ RUN git clone -b v3.1 https://github.com/klee/klee.git /tmp/klee_src/ && \
     sudo rm -rf /tmp/klee_build130stp_z3/unittests/*
 
 
-# Java runtime using jlink
-FROM eclipse-temurin:11 as jre_build
-
-# Create a custom Java runtime
-RUN $JAVA_HOME/bin/jlink \
-    --add-modules java.base,java.logging \
-    --strip-debug \
-    --no-man-pages \
-    --no-header-files \
-    --compress=2 \
-    --output /javaruntime
-
-
 # Finally
 FROM --platform=linux/amd64 python:3.12.1-slim-bookworm
 
@@ -208,14 +191,8 @@ COPY --from=klee_base /tmp/z3-4.8.15-install /tmp/z3-4.8.15-install/
 COPY --from=klee_base /tmp/klee_src/include/klee /usr/include/klee/
 
 # Copy Yosys executables and headers
-COPY --from=yosys_and_perses_base /usr/local/bin/yosys* /usr/local/bin/
-COPY --from=yosys_and_perses_base /usr/local/share/yosys /usr/local/share/yosys/
-# Copy Perses jar file
-COPY --from=yosys_and_perses_base /tmp/perses_deploy.jar /tmp/perses_deploy.jar
-
-# Copy Java runtime
-ENV JAVA_HOME=/opt/java/openjdk
-COPY --from=jre_build /javaruntime $JAVA_HOME
+COPY --from=yosys_base /usr/local/bin/yosys* /usr/local/bin/
+COPY --from=yosys_base /usr/local/share/yosys /usr/local/share/yosys/
 
 COPY --from=python_packages /tmp/wheelhouse /tmp/wheelhouse/
 COPY --from=python_packages /tmp/tree-sitter.so /tmp/tree-sitter.so
@@ -253,7 +230,7 @@ WORKDIR ${VERIXMITH_ROOT}
 COPY core ${VERIXMITH_ROOT}/core/
 COPY tasks.py ${VERIXMITH_ROOT}/tasks.py
 
-ENV PATH="${PATH}:/tmp/llvm-130-install_O_D_A/bin:/tmp/klee_build130stp_z3/bin:${JAVA_HOME}/bin:/home/verixmith/.local/bin"
+ENV PATH="${PATH}:/tmp/llvm-130-install_O_D_A/bin:/tmp/klee_build130stp_z3/bin:/home/verixmith/.local/bin"
 
 # Files needed by ld (part of libgcc-11-dev)
 # Reference: http://tolik1967.azurewebsites.net/clang_no_gcc.html
